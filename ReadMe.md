@@ -144,6 +144,20 @@ pnpm add -D prettier-plugin-tailwindcss
  "plugins": ["prettier-plugin-tailwindcss"]
 ```
 
+## 5. Router 설정
+
+- `react-router`를 설치한다.
+
+```bash
+pnpm add react-router-dom
+```
+
+- `main.tsx`에 `BrowserRouter`를 추가한다.
+
+## 6. QueryClient 설정
+
+- `main.tsx`에 `QueryClientProvider`를 추가한다.
+
 # Backend
 
 ## 1. Spring Boot 프로젝트 생성

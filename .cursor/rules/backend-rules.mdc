@@ -1,0 +1,55 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+## 🧠 프로젝트 설명:
+이 백엔드는 Java + Spring Boot 3.2.x 기반으로 제작되며, 프론트엔드(React)와 연동하여 API를 제공하는 역할을 합니다. 빌드 도구는 Gradle(Groovy)이고, 데이터베이스는 MySQL을 사용합니다.
+
+---
+
+## 🚀 기본 개발 규칙 (초급자 기준):
+
+1. **언어는 Java 17 또는 21**을 사용합니다.
+2. **패키지 구조는 역할 기반으로 나눕니다.**
+   - `controller`: 요청(Request) 처리
+   - `service`: 비즈니스 로직 처리
+   - `repository`: DB 접근 (JPA)
+   - `domain` 또는 `entity`: 테이블과 매핑되는 클래스
+   - `dto`: 요청/응답 형식의 데이터 전달 객체
+
+3. **파일마다 주석을 친절하게 작성합니다.**
+   - 클래스 상단에는 간단한 설명
+   - 메서드마다 어떤 동작을 하는지 주석
+
+4. **REST API 방식으로 URL을 설계합니다.**
+   - 예: `/api/users`, `/api/videos`, `/api/auth/login`
+
+5. **MySQL 연결은 `application.yml`에서 설정합니다.**
+   - `spring.datasource`와 `jpa.hibernate.ddl-auto` 사용
+
+6. **DTO로 입력과 출력을 분리합니다.**
+   - Entity를 직접 노출하지 않습니다.
+
+7. **API 예외처리는 GlobalExceptionHandler로 통합합니다.**
+
+---
+
+## ✍️ 코드 작성 예시 (주석 포함)
+
+```java
+// UserController.java
+@RestController
+@RequestMapping("/api/users")
+@RequiredArgsConstructor
+public class UserController {
+
+    private final UserService userService;
+
+    // ✅ 사용자 생성 API
+    @PostMapping
+    public ResponseEntity<UserResponseDto> createUser(@RequestBody @Valid UserRequestDto requestDto) {
+        UserResponseDto responseDto = userService.createUser(requestDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
+    }
+}

@@ -1,0 +1,68 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# 프로젝트 개요
+- React + TypeScript 기반의 넷플릭스 클론 웹 애플리케이션 개발
+- Vite를 빌드 도구로 사용
+- TailwindCSS와 shadcn/ui로 UI 스타일링
+- Zustand를 통한 상태 관리 (기능별 store 분리)
+- Zod로 폼 유효성 검사 및 타입 안정성 확보
+- pnpm 명령어 사용
+- FSD(Feature-Sliced Design) 아키텍처로 폴더 구조 및 코드 구성
+- 클린 코드 원칙에 따른 책임 분리 및 코드 분할 적극 적용
+- React Router 또는 App Router를 상황에 따라 유연하게 사용
+- API 통신은 axios 또는 fetch 기반으로 구현
+
+# 넷플릭스 프로젝트 특화 내용
+- 사용자 프로필 관리, 콘텐츠 목록, 상세 페이지, 재생 기능 등 도메인별 features 구성
+- 캐러셀 UI, 검색, 필터링, 무한 스크롤 등 주요 UI 요소는 shared/ui 및 features 내 컴포넌트로 분리
+- 비디오 재생과 관련된 복잡한 상태는 별도 Zustand store로 관리
+- TailwindCSS와 shadcn/ui 컴포넌트를 활용한 반응형 디자인
+- Next.js가 아닌 Vite + React SPA 환경에서 최적화된 코드 분할 및 lazy loading 적용
+- 환경변수는 Vite 규칙에 따라 관리 (API 주소, 키 등)
+
+# 코드 작성 기준
+1. 모든 주석 및 설명은 한국어로 작성
+2. React는 함수형 컴포넌트와 Hooks 중심으로 구성
+3. Zustand로 전역 상태 관리, 기능 단위로 store 분리
+4. Zod로 스키마 기반 유효성 검사 및 타입 추론 사용
+5. pnpm을 패키지 매니저로 사용
+6. FSD 아키텍처 기준으로 폴더 구분 (features/, entities/, shared/, pages/ 등)
+7. shadcn/ui 컴포넌트를 재사용 가능한 형태로 래핑해 사용
+8. React.lazy, dynamic import 등 코드 분할로 성능 최적화
+9. 클린 코드 원칙 준수 (함수명, 파일명, 책임 명확히 분리, any 사용 금지)
+10. ESLint + Prettier 기반 자동 포맷팅 적용
+11. .env 환경변수는 Vite 규칙에 따라 VITE_ 접두사 사용하며, shared/config에서 관리
+
+# 주요 폴더 구조 (FSD 아키텍처)
+/src
+ ├── app/               # 앱 전역 설정, 라우터, 전역 상태, 환경변수 관리
+ ├── pages/             # 라우팅 대상 페이지 컴포넌트 (ex: 홈, 검색, 상세)
+ ├── features/          # 기능 단위 모듈 (ex: 사용자 프로필, 콘텐츠 필터, 캐러셀 등)
+ ├── entities/          # 핵심 도메인 모델 및 상태 (ex: User, Movie, Series)
+ ├── shared/            # 공통 UI 컴포넌트, 라이브러리 래핑, 유틸, 훅 등
+ │    ├── ui/           # shadcn/ui 기반 컴포넌트 래핑
+ │    ├── lib/          # axios 인스턴스, Zustand store 등 공통 라이브러리
+ │    ├── hooks/        # 공통 커스텀 훅
+ │    ├── utils/        # 공통 유틸 함수
+ │    └── config/       # 환경변수 관리, 상수 정의
+ ├── assets/            # 이미지, 폰트, 아이콘 등 정적 자원
+ └── index.tsx          # React 진입점
+
+# 환경변수 관리 (.env)
+- Vite 환경변수는 반드시 VITE_ 접두사 사용 (ex: VITE_API_BASE_URL)
+- shared/config/env.ts 등에서 안전하게 불러와 사용
+- 예시)
+  export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+  export const NODE_ENV = import.meta.env.MODE || 'development';
+
+# 상태 관리 및 유효성 검사 예시
+- Zustand store는 기능별로 분리해 관리
+- Zod 스키마 기반 유효성 검사 및 타입 추론 활용
+
+# 개발 문화
+- 클린 코드 원칙 준수
+- 기능별 책임 분리 및 코드 분할로 유지보수 용이
+- pnpm 사용 및 ESLint, Prettier로 일관된 코드 스타일 유지
