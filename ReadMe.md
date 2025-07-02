@@ -143,3 +143,10 @@ pnpm add -D prettier-plugin-tailwindcss
 ```json
  "plugins": ["prettier-plugin-tailwindcss"]
 ```
+
+# Backend
+
+## 1. Spring Boot 프로젝트 생성
+
+- [Spring Initializr](https://start.spring.io/) 에서 프로젝트를 생성
+  ![백엔드 구조](images/backend1.png)
