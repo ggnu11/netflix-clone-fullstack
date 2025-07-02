@@ -1,3 +1,21 @@
+# GitHub
+
+## 1. main 브랜치 명 변경
+
+- [GITHUB](https://github.com/) 접속
+- GitHub -> Settings -> Default branch에서 main을 master로 변경
+- VsCode 터미널에서 main 브랜치를 master로 변경
+
+```bash
+git branch -m main master
+```
+
+## default 브랜치 변경
+
+- `git checkout -b develop` 명령어로 develop 브랜치 생성
+- `git push -u origin develop` 명령어로 push
+- GitHub -> Setting -> Default branch 설정값을 master -> develop으로 변경
+
 # Frontend
 
 ## 1. 초기 개발 세팅
